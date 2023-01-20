@@ -4,21 +4,24 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Test from "./components/Test.jsx";
 import Result from "./components/Result.jsx";
-// component imports
-// TODO redux store imports
+import { State } from "./store/reducer";
+import { setTimerId } from "./store/actions";
+import { recordTest } from "./util/recordTest";
 // TODO styling imports
 
 function App() {
-  const [testOn, setTestOn] = useState(true);
-  // TODO get time and word from store state
+  const {
+    time: { timerId, timer },
+    word: { currWord, typedWord, activeWordRef },
+  } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     // start/restart the test on keydown
     document.onkeydown = (e) => {
       if (e.key.length === 1 || e.key === "Backspace" || e.key === "Tab") {
+        recordTest(e.key, e.ctrlKey);
         e.preventDefault();
-        // TODO recordTest()
       }
     };
     // cleanup
@@ -28,22 +31,34 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    // TODO typing words?
-  }, []);
+    let idx = typedWord.length - 1;
+    const currWordEl = activeWordRef.current;
+    if (currWordEl) {
+      currWordEl.children[idx + 1].classList.add(
+        currWord[idx] !== typedWord[idx] ? "wrong" : "right"
+      );
+    }
+  }, [currWord, typedWord, activeWordRef]);
 
   useEffect(() => {
-    // TODO typing words?
-  }, []);
+    let idx = typedWord.length;
+    const currWordEl = activeWordRef.current;
+    if (currWordEl && idx < currWord.length) {
+      currWordEl.children[idx + 1].classList.remove("wrong", "right");
+    }
+  }, [currWord.length, typedWord, activeWordRef]);
 
   useEffect(() => {
-    // TODO test ends?
-  }, []);
+    if(!timer && timerId){
+      clearInterval(timerId);
+      dispatch(setTimerId(null));
+    }
+  }, [dispatch, timer, timerId]);
 
   return (
     <>
       <Header />
-      {testOn ? <Test /> : <Result />}
-      {/* {timer ? <Test /> : <Result />} */}
+      {timer ? <Test /> : <Result />}
       <Footer />
     </>
   );
