@@ -1,10 +1,39 @@
+import { resetTest } from "../helpers/resetTest";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//TODO redux store imports
+import {
+  setTheme,
+  setTime,
+  setType,
+  setWordList,
+  timerSet,
+} from "../store/actions";
+// import { State } from "store/reducer";
+// import "stylesheets/Header.scss";
+// import "stylesheets/AnimatedTheme.scss";
 
-//TODO import styling
+// export const options = {
+//     time: [15, 30, 45, 60, 120],
+//     theme: [
+//         "default",
+//         "mkbhd",
+//         "mocha",
+//         "coral",
+//         "ocean",
+//         "azure",
+//         "forest",
+//         "rose-milk",
+//         "amethyst",
+//         "amber",
+//         "terminal",
+//         "vscode",
+//         "mountain",
+//         "pink-sky",
+//         "red-season",
+//     ],
+//     type: ["words", "sentences", "numbers", "got", "javascript", "python"],
+// };
 
-// test options
 const options = {
   time: [15, 30, 45, 60, 120],
   theme: ["default"],
@@ -12,7 +41,10 @@ const options = {
 };
 
 const Header = () => {
-  //TODO get prefs and time from store
+  const {
+    preferences: { timeLimit, theme, type },
+    time: { timerId },
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -20,47 +52,77 @@ const Header = () => {
     const theme = localStorage.getItem("theme") || "default";
     const type = localStorage.getItem("type") || "words";
     const time = parseInt(localStorage.getItem("time") || "60", 10);
-
-    //TODO import & dispatch wordlist
-    //TODO dispatch timer
-    //TODO dispatch tyoe
-    //TODO dispatch time
-    //TODO dispatch theme
+    import(`../wordlists/${type}.json`).then((words) =>
+      dispatch(setWordList(words.default))
+    );
+    dispatch(timerSet(time));
+    dispatch(setType(type));
+    dispatch(setTime(time));
+    dispatch(setTheme(theme));
   }, [dispatch]);
 
-  //TODO set theme
+  // Set Theme
   useEffect(() => {
-    //TODO
-  }, []);
+    if (theme) {
+      document.querySelector(".theme")?.childNodes.forEach((el) => {
+        if (el instanceof HTMLButtonElement) el.classList.remove("selected");
+      });
+      document
+        .querySelector(`button[value="${theme}"]`)
+        ?.classList.add("selected");
+      document.body.children[1].classList.remove(...options.theme);
+      document.body.children[1].classList.add(theme);
+      localStorage.setItem("theme", theme);
+    }
+  }, [dispatch, theme]);
 
-  //TODO set time
+  // Set Time
   useEffect(() => {
-    //TODO
-  }, []);
+    if (timeLimit !== 0) {
+      document.querySelector(".time")?.childNodes.forEach((el) => {
+        if (el instanceof HTMLButtonElement) el.classList.remove("selected");
+      });
+      document
+        .querySelector(`button[value="${timeLimit}"]`)
+        ?.classList.add("selected");
+      dispatch(setTime(timeLimit));
+      localStorage.setItem("time", `${timeLimit}`);
+      resetTest();
+    }
+  }, [dispatch, timeLimit]);
 
-  //TODO set type
+  // Set Type
   useEffect(() => {
-    //TODO
-  }, []);
+    if (type !== "") {
+      document.querySelector(".type")?.childNodes.forEach((el) => {
+        if (el instanceof HTMLButtonElement) el.classList.remove("selected");
+      });
+      document
+        .querySelector(`button[value="${type}"]`)
+        ?.classList.add("selected");
+      dispatch(setType(type));
+      localStorage.setItem("type", type);
+      resetTest();
+    }
+  }, [dispatch, type]);
 
-  // when you change one of the test options
   const handleOptions = ({ target }) => {
-    console.log(target.dataset.option);
-    console.log(target.value);
-
-    if (target && target.dataset.option) {
-      //target.dataset.option is time, theme, or type
+    if (target instanceof HTMLButtonElement && target.dataset.option) {
+      if (target.value === theme || +target.value === timeLimit) {
+        target.blur();
+        return;
+      }
       switch (target.dataset.option) {
         case "theme":
-          //TODO dispatch theme
+          setTimeout(() => {
+            dispatch(setTheme(target.value));
+          }, 750);
           break;
-
         case "time":
-          //TODO dispatch time
+          dispatch(setTime(+target.value));
           break;
-
         case "type":
-          //TODO dispatch type
+          dispatch(setType(target.value));
           break;
       }
       target.blur();
@@ -68,10 +130,8 @@ const Header = () => {
   };
 
   return (
-    <div id="header"
-    // className={timerOn ? "hidden" : undefined}
-    >
-      <a href="/" style={{ textDecoration: "none" }} className="logo">
+    <header className={timerId ? "hidden" : undefined}>
+      <a href="/" className="brand">
         typing-test
       </a>
       <div className="buttons">
@@ -92,8 +152,7 @@ const Header = () => {
           </div>
         ))}
       </div>
-    </div>
+    </header>
   );
 };
-
 export default Header;

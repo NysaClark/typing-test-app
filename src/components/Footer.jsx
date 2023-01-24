@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-//TODO redux store imports
+// import "stylesheets/Footer.scss";
 
-//TODO import styling
-
-const Footer = () => {
-//TODO get time from store
+export default function Footer() {
+  const { timerId } = useSelector((state) => state.time);
 
   return (
-    // TODO add to time to div's className
-    <div className={`bottom`}>
+    <div className={`bottom-area ${timerId ? "hidden" : ""}`}>
       <span className="hint">
         <kbd>Tab</kbd> to restart test
       </span>
-      <div id="footer">
-        <a style={{ textDecoration: "none"}} target="_blank" rel="noreferrer" href="https://github.com/">
+      <footer>
+        <a
+          style={{ textDecoration: "none" }}
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/"
+        >
           <span>&lt;/&gt;</span> github
         </a>
         <span>
-        created by{" "}
+          created by{" "}
           <a
-          style={{ textDecoration: "none"}} 
+            style={{ textDecoration: "none" }}
             target="_blank"
             rel="noreferrer"
             href="https://github.com/NysaClark"
@@ -31,16 +33,16 @@ const Footer = () => {
         <span>
           inspired by{" "}
           <a
-          style={{ textDecoration: "none"}} 
+            style={{ textDecoration: "none" }}
             target="_blank"
             rel="noreferrer"
             href="https://www.github.com/salmannotkhan"
           >
             @salmannotkhan
-          </a>
-          {" "}&{" "}
+          </a>{" "}
+          &{" "}
           <a
-          style={{ textDecoration: "none"}} 
+            style={{ textDecoration: "none" }}
             target="_blank"
             rel="noreferrer"
             href="https://github.com/monkeytypegame"
@@ -48,9 +50,7 @@ const Footer = () => {
             @monkeytypegame
           </a>
         </span>
-      </div>
+      </footer>
     </div>
   );
-};
-
-export default Footer;
+}

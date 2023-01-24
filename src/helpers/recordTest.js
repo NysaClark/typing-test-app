@@ -4,18 +4,21 @@ import {
   setChar,
   setTypedWord,
 } from "../store/actions";
-import store from "../store/store";
+import { store } from "../store/store";
 import { resetTest } from "./resetTest";
 import { startTimer } from "./startTimer";
-console.log(store);
+
 const handleBackspace = (ctrlKey) => {
   const { dispatch, getState } = store;
   const {
     word: { typedWord, activeWordRef, typedHistory, wordList },
   } = getState();
-  const currInx = typedHistory.length - 1;
-  const currWordEl = activeWordRef.current;
-  if (!typedWord && typedHistory[currInx] !== wordList[currInx]) {
+  const currIdx = typedHistory.length - 1;
+  const currWordEl =
+    activeWordRef === null || activeWordRef === void 0
+      ? void 0
+      : activeWordRef.current;
+  if (!typedWord && typedHistory[currIdx] !== wordList[currIdx]) {
     dispatch(backtrackWord(ctrlKey));
     currWordEl.previousElementSibling.classList.remove("right", "wrong");
     if (ctrlKey) {
@@ -30,7 +33,7 @@ const handleBackspace = (ctrlKey) => {
         char.classList.remove("wrong", "right");
       });
     } else {
-      const newTypedWord = typedWord.splice(0, typedWord.length - 1);
+      const newTypedWord = typedWord.slice(0, typedWord.length - 1);
       dispatch(setTypedWord(newTypedWord));
     }
   }
@@ -50,31 +53,33 @@ export const recordTest = (key, ctrlKey) => {
     }
     return;
   }
-  if (!timerId && key !== "Tab") {
-    startTimer();
-  }
-  const currWordEl = activeWordRef.current;
+  if (!timerId && key !== "Tab") startTimer();
+  const currWordEl =
+    activeWordRef === null || activeWordRef === void 0
+      ? void 0
+      : activeWordRef.current;
   currWordEl.scrollIntoView({ behavior: "smooth", block: "center" });
-  const caret = caretRef.current;
+  const caret =
+    caretRef === null || caretRef === void 0 ? void 0 : caretRef.current;
   caret.classList.remove("blink");
   setTimeout(() => caret.classList.add("blink"), 500);
   switch (key) {
     case "Tab":
-        if(timer !== timeLimit || timerId){
-            resetTest();
-            document.getElementsByClassName("word")[0].scrollIntoView();
-        }
-        break;
+      if (timer !== timeLimit || timerId) {
+        resetTest();
+        document.getElementsByClassName("word")[0].scrollIntoView();
+      }
+      break;
     case " ":
-        if(typedWord === "") return;
-        currWordEl.classList.add(typedWord !== currWord ? "wrong" : "right");
-        dispatch(appendTypedHistory());
-        break;
+      if (typedWord === "") return;
+      currWordEl.classList.add(typedWord !== currWord ? "wrong" : "right");
+      dispatch(appendTypedHistory());
+      break;
     case "Backspace":
-        handleBackspace(ctrlKey);
-        break;
+      handleBackspace(ctrlKey);
+      break;
     default:
-        dispatch(setChar(typedWord + key));
-        break;
+      dispatch(setChar(typedWord + key));
+      break;
   }
 };
