@@ -33,7 +33,7 @@ a span {
   margin: 2.5px;
 }
 a:hover {
-  color: var(--hl-color);
+  color: var(--fg-color);
 }
 
 * {
@@ -57,11 +57,11 @@ button.mini {
   margin: 0;
 }
 button.mini.selected {
-  color: var(--hl-color);
+  color: var(--fg-color);
 }
 button:hover {
-  color: var(--hl-color);
-  border-color: var(--hl-color);
+  color: var(--fg-color);
+  border-color: var(--fg-color);
 }
 
 .hidden {
@@ -210,6 +210,9 @@ header .buttons, footer .buttons {
 header .brand {
   font-size: 21pt;
   align-self: center;
+}
+header .brand:hover {
+  color: var(--fg-color);
 }
 
 .bottom-area {

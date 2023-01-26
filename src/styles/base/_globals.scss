@@ -31,7 +31,7 @@ a {
       margin: 2.5px;
   }
   &:hover {
-      color: var(--hl-color);
+      color: var(--fg-color);
   }
 }
 
@@ -54,12 +54,12 @@ button {
       padding: 5px;
       margin: 0;
       &.selected {
-          color: var(--hl-color);
+          color: var(--fg-color);
       }
   }
   &:hover {
-      color: var(--hl-color);
-      border-color: var(--hl-color);
+      color: var(--fg-color);
+      border-color: var(--fg-color);
   }
 }
 

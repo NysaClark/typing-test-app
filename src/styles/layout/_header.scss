@@ -17,5 +17,8 @@ header{
     .brand{
         font-size: 21pt;
         align-self: center;
+        &:hover{
+            color: var(--fg-color);
+        }
     }
 }
