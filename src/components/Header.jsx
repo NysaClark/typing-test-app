@@ -124,6 +124,8 @@ const Header = () => {
         case "type":
           dispatch(setType(target.value));
           break;
+        default:
+          break;
       }
       target.blur();
     }
