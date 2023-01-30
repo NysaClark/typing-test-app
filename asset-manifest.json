@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/typing-test-appnpm%20install%20--save%20gh-pages/static/css/main.37998ffc.css",
+    "main.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/main.45c8cb24.js",
+    "static/js/612.de269f86.chunk.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/612.de269f86.chunk.js",
+    "static/js/421.448bf9d5.chunk.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/421.448bf9d5.chunk.js",
+    "static/js/954.366c6702.chunk.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/954.366c6702.chunk.js",
+    "static/js/513.2092f071.chunk.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/513.2092f071.chunk.js",
+    "static/js/149.6aa8c9d8.chunk.js": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/149.6aa8c9d8.chunk.js",
+    "index.html": "/typing-test-appnpm%20install%20--save%20gh-pages/index.html",
+    "main.37998ffc.css.map": "/typing-test-appnpm%20install%20--save%20gh-pages/static/css/main.37998ffc.css.map",
+    "main.45c8cb24.js.map": "/typing-test-appnpm%20install%20--save%20gh-pages/static/js/main.45c8cb24.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.37998ffc.css",
+    "static/js/main.45c8cb24.js"
+  ]
+}
