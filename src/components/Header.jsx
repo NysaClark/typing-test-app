@@ -1,5 +1,5 @@
 import { resetTest } from "../helpers/resetTest";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setTheme,
@@ -36,8 +36,8 @@ import {
 
 const options = {
   time: [15, 30, 45, 60, 120],
-  theme: ["default"],
-  type: ["words", "sentences", "quotes", "numbers"],
+  theme: ["default", "monkeytype", "night", "cookie", "icecream", "forest"],
+  type: ["words", "sentences", "numbers", "quotes", "newgirl"],
 };
 
 const Header = () => {

@@ -1,8 +1,50 @@
 .default {
-    --bg-color: #ada6c2;
-    --font-color: #e4e3e9;
-    --hl-color: #ca4754;
-    --fg-color: #2f2a41;
+  --bg-color: #ada6c2;
+  --font-color: #e4e3e9;
+  --hl-color: #2f2a41;
+  --err-color: #ca4754;
+  --fg-color: #2f2a41;
 }
 
-// 2f2a41
+.cookie {
+  --bg-color: #e4bb97;
+  --font-color: #fef5ef;
+  --hl-color: #b06945;
+  --err-color: #b0313e;
+  --fg-color: #b06945;
+}
+
+.night {
+  --bg-color: #22223b;
+  --font-color: #f2e9e4;
+  --err-color: #ca715d;
+  --hl-color: #9a8c98;
+  --fg-color: #9a8c98;
+}
+
+.icecream {
+  --bg-color: #9d8189;
+  --font-color: #ffe5d9;
+  // 9D8189
+  --err-color: #f4acb7;
+  --hl-color: #f4acb7;
+  --fg-color: #d8e2dc;
+}
+
+.forest {
+  --bg-color: #081c15;
+  --font-color: #e3f3e6;
+  --err-color: #622f34;
+  --hl-color: #622f34;
+  --fg-color: #2d6a4f;
+}
+
+.monkeytype {
+  --bg-color: #323437;
+  --font-color: #646669;
+  //d1d0c5
+  --hl-color: #e2b714;
+  --err-color: #ca4754;
+  --fg-color:#d1d0c5;
+  //646669
+}

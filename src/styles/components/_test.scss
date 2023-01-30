@@ -23,7 +23,7 @@
     position: relative;
     margin: 0 5px 3px;
     &.wrong {
-      text-decoration: 2px underline var(--hl-color);
+      text-decoration: 2px underline var(--err-color);
       animation: shake 0.1s ease;
       @keyframes shake {
         0% {
@@ -51,7 +51,7 @@
     width: max-content;
   }
   span.wrong {
-    color: var(--hl-color) !important;
+    color: var(--err-color) !important;
   }
   .extra {
     opacity: 0.6;
