@@ -1,14 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRef, setCaretRef } from "../store/actions";
-// import { State } from "store/reducer";
-// import "stylesheets/Test.scss";
 
 const Test = () => {
-  const {
-    word: { typedWord, currWord, wordList, typedHistory },
-    time: { timer },
-  } = useSelector((state) => state);
+  const { typedWord, currWord, wordList, typedHistory } = useSelector((state) => state.word);
+  const timer = useSelector((state) => state.time.timer);
 
   const dispatch = useDispatch();
   const extraLetters = typedWord.slice(currWord.length).split("");

@@ -8,31 +8,6 @@ import {
   setWordList,
   timerSet,
 } from "../store/actions";
-// import { State } from "store/reducer";
-// import "stylesheets/Header.scss";
-// import "stylesheets/AnimatedTheme.scss";
-
-// export const options = {
-//     time: [15, 30, 45, 60, 120],
-//     theme: [
-//         "default",
-//         "mkbhd",
-//         "mocha",
-//         "coral",
-//         "ocean",
-//         "azure",
-//         "forest",
-//         "rose-milk",
-//         "amethyst",
-//         "amber",
-//         "terminal",
-//         "vscode",
-//         "mountain",
-//         "pink-sky",
-//         "red-season",
-//     ],
-//     type: ["words", "sentences", "numbers", "got", "javascript", "python"],
-// };
 
 const options = {
   time: [15, 30, 45, 60, 120],
@@ -41,10 +16,8 @@ const options = {
 };
 
 const Header = () => {
-  const {
-    preferences: { timeLimit, theme, type },
-    time: { timerId },
-  } = useSelector((state) => state);
+  const timerId = useSelector((state) => state.time.timerId);
+  const { timeLimit, theme, type } = useSelector((state) => state.preferences);
 
   const dispatch = useDispatch();
 

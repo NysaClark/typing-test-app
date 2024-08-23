@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // import "stylesheets/Footer.scss";
 
 export default function Footer() {
-  const { timerId } = useSelector((state) => state.time);
+  const timerId = useSelector((state) => state.time.timerId);
 
   return (
     <div className={`bottom-area ${timerId ? "hidden" : ""}`}>

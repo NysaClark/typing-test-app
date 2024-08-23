@@ -1,5 +1,7 @@
 import reducer from "./reducer";
-import { createStore } from "redux";
+// import { createStore } from "redux";
+
+import { legacy_createStore as createStore} from 'redux'
 
 export const store = createStore(
     reducer,

@@ -12,6 +12,9 @@ export const SET_REF = "SETREF";
 export const SET_CARET_REF = "SETCARETREF";
 export const SET_TYPE = "SETTYPE";
 
+// export const SET_MISSED_CHARS = "SETMISSEDCHARS";
+// export const MISSED_CHARS_INCREMENT = "MISSEDCHARSINCREMENT"
+
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
 export const timerSet = (payload) => ({ type: TIMER_SET, payload });
@@ -43,6 +46,9 @@ export const setCaretRef = (payload) => ({
     type: SET_CARET_REF,
     payload,
 });
+
+// export const setMissedChars = (payload) => ({ type: SET_MISSED_CHARS, payload });
+// export const missedCharsIncrement = () => ({ type: MISSED_CHARS_INCREMENT })
 
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });

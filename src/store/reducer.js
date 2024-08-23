@@ -13,6 +13,8 @@ import {
   SET_REF,
   SET_CARET_REF,
   SET_TYPE,
+  // SET_MISSED_CHARS,
+  // MISSED_CHARS_INCREMENT,
 } from "./actions";
 
 export const initialState = {
@@ -28,6 +30,7 @@ export const initialState = {
     wordList: [],
     activeWordRef: null,
     caretRef: null,
+    // missedChars: 0
   },
   time: {
     timer: 1,
@@ -90,8 +93,12 @@ const wordReducer = (state = initialState.word, { type, payload }) => {
         typedWord: "",
         typedHistory: [],
         currWord: shuffledWordList[0],
-        wordList: shuffledWordList,
+        wordList: [...shuffledWordList],
       };
+    // case SET_MISSED_CHARS:
+    //   return { ...state, missedChars: payload };
+    // case MISSED_CHARS_INCREMENT:
+    //   return { ...state, missedChars: state.missedChars + 1 };
     default:
       return state;
   }

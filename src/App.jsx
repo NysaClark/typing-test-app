@@ -8,10 +8,8 @@ import { setTimerId } from "./store/actions";
 import { recordTest } from "./helpers/recordTest";
 
 export default function App() {
-    const {
-        time: { timerId, timer },
-        word: { currWord, typedWord, activeWordRef },
-    } = useSelector((state) => state);
+    const { timerId, timer } = useSelector((state) => state.time);
+    const { currWord, typedWord, activeWordRef } = useSelector((state) => state.word);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -58,6 +56,13 @@ export default function App() {
             clearInterval(timerId);
             dispatch(setTimerId(null));
         }
+        //! can get the number of missed characters 
+        //! right before the test ends and is hidden
+        //! BUT this doesn't track the chracters that are
+        //! mistyped then corrected
+        // if (timer == 1) {
+        //     console.log(document.querySelectorAll("span.wrong"))
+        // }
     }, [dispatch, timer, timerId]);
 
     return (

@@ -1,13 +1,9 @@
 import { resetTest } from "../helpers/resetTest";
 import { useSelector } from "react-redux";
-// import { State } from "store/reducer";
-// import "stylesheets/Result.scss";
 
 const Result = () => {
-    const {
-      word: { wordList, typedHistory, currWord },
-      preferences: { timeLimit },
-    } = useSelector((state) => state);
+    const { wordList, typedHistory, currWord } = useSelector((state) => state.word);
+    const timeLimit = useSelector((state) => state.preferences.timeLimit);
     const spaces = wordList.indexOf(currWord);
     let correctChars = 0;
     const result = typedHistory.map(
